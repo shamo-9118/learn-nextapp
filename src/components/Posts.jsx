@@ -1,15 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { useCallback } from "react";
 
+const initialState = {
+  data: [],
+  loading: true,
+  error: null,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "end": {
+      return {
+        ...state,
+        data: action.data,
+        loading: false,
+      };
+    }
+    case "error": {
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+    }
+    default: {
+      throw new Error("no such action type!");
+    }
+  }
+};
+
 export function Posts() {
-  const [state, setState] = useState({
-    data: [],
-    loading: true,
-    error: null,
-  });
-  // const [posts, setPosts] = useState([]);
-  // const [loding, setLoding] = useState(true);
-  // const [error, setError] = useState(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  // const [state, setState] = useState({
+  //   data: [],
+  //   loading: true,
+  //   error: null,
+  // });
 
   const getPosts = useCallback(async () => {
     try {
@@ -18,21 +44,9 @@ export function Posts() {
         throw new Error("取得に失敗しました。");
       }
       const json = await res.json();
-      setState((prevState) => {
-        return {
-          ...prevState,
-          data: json,
-          loading: false,
-        };
-      });
+      dispatch({ type: "end", data: json });
     } catch (error) {
-      setState((prevState) => {
-        return {
-          ...prevState,
-          loading: false,
-          error,
-        };
-      });
+      dispatch({type:"error",error})
     }
   }, []);
 
@@ -62,3 +76,7 @@ export function Posts() {
     </ol>
   );
 }
+//useReducerの考え方
+// const [state, dispatch] = useReducer(reducer, initialArg, init);
+//(state, action) => newState
+//ステイトとアクションを受け取って新しいステイトを返す。非常に大切な考え方。
