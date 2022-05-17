@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import { useCallback } from "react";
 
 export function Posts() {
-  const [posts, setPosts] = useState([]);
-  const [loding, setLoding] = useState(true);
-  const [error, setError] = useState(null);
+  const [state, setState] = useState({
+    data: [],
+    loading: true,
+    error: null,
+  });
+  // const [posts, setPosts] = useState([]);
+  // const [loding, setLoding] = useState(true);
+  // const [error, setError] = useState(null);
 
   const getPosts = useCallback(async () => {
     try {
@@ -13,32 +18,45 @@ export function Posts() {
         throw new Error("取得に失敗しました。");
       }
       const json = await res.json();
-      setPosts(json);
+      setState((prevState) => {
+        return {
+          ...prevState,
+          data: json,
+          loading: false,
+        };
+      });
     } catch (error) {
-      setError(error);
+      setState((prevState) => {
+        return {
+          ...prevState,
+          loading: false,
+          error,
+        };
+      });
     }
-    setLoding(false);
   }, []);
 
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
-  if (loding) {
+  console.log("foo");
+
+  if (state.loading) {
     return <div>ローディング中です</div>;
   }
 
-  if (error) {
-    return <div>{error.massage}</div>;
+  if (state.error) {
+    return <div>{state.error.massage}</div>;
   }
 
-  if (posts.length === 0) {
+  if (state.data.length === 0) {
     return <div>データはありません</div>;
   }
 
   return (
     <ol>
-      {posts.map((post) => {
+      {state.data.map((post) => {
         return <li key={post.id}>{post.title}</li>;
       })}
     </ol>
