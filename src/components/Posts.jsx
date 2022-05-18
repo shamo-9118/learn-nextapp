@@ -4,7 +4,6 @@ import Link from "next/link";
 
 export const Posts = () => {
   const { data, error, isLoading, isEmpty } = usePosts();
-  console.log(data);
   if (isLoading) {
     return <div>ローディング中です</div>;
   }
