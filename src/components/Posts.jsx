@@ -1,82 +1,57 @@
-import { useEffect, useReducer } from "react";
-import { useCallback } from "react";
+import useSWR from "swr";
 
-const initialState = {
-  data: [],
-  loading: true,
-  error: null,
-};
+const fetcher = async (url) => {
+  const response = await fetch(url);
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "end": {
-      return {
-        ...state,
-        data: action.data,
-        loading: false,
-      };
-    }
-    case "error": {
-      return {
-        ...state,
-        loading: false,
-        error: action.error,
-      };
-    }
-    default: {
-      throw new Error("no such action type!");
-    }
+  if (!response.ok) {
+    throw new Error("エラーが発生したため、データ取得できませんでした");
   }
+
+  const json = await response.json();
+  return json;
 };
 
-export function Posts() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  // const [state, setState] = useState({
-  //   data: [],
-  //   loading: true,
-  //   error: null,
-  // });
+const usePosts = () => {
+  const { data, error } = useSWR(
+    "https://jsonplaceholder.typicode.com/posts",
+    fetcher
+  );
+  return {
+    data,
+    error,
+    isLoading: !error && !data,
+    isEmpty: data && data.length === 0,
+  };
+};
 
-  const getPosts = useCallback(async () => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      if (!res.ok) {
-        throw new Error("取得に失敗しました。");
-      }
-      const json = await res.json();
-      dispatch({ type: "end", data: json });
-    } catch (error) {
-      dispatch({type:"error",error})
-    }
-  }, []);
-
-  useEffect(() => {
-    getPosts();
-  }, [getPosts]);
-
-  console.log("foo");
-
-  if (state.loading) {
+export const Posts = () => {
+  const { data, error, isLoading, isEmpty } = usePosts();
+  console.log(data);
+  if (isLoading) {
     return <div>ローディング中です</div>;
   }
 
-  if (state.error) {
-    return <div>{state.error.massage}</div>;
+  if (error) {
+    return <div>{error.message}</div>;
   }
 
-  if (state.data.length === 0) {
+  if (isEmpty) {
     return <div>データはありません</div>;
   }
 
   return (
     <ol>
-      {state.data.map((post) => {
+      {data.map((post) => {
         return <li key={post.id}>{post.title}</li>;
       })}
     </ol>
   );
-}
+};
 //useReducerの考え方
 // const [state, dispatch] = useReducer(reducer, initialArg, init);
 //(state, action) => newState
 //ステイトとアクションを受け取って新しいステイトを返す。非常に大切な考え方。
+
+//動画ではfectherを定義せずにできていたけど、実際にやると、fechterをuseSWRの第二引数として渡さないとデータの取得ができなかった
+//fechterの意義は、エラーが起きた時の対処として表示させるものを作るために、useSWRがerrorを受け取るためのもの
+// オーバーライド・・・デフォルトで設定されているものを上書きして、再設定すること
