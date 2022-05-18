@@ -96,9 +96,9 @@
   max-width: 300px;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
+.anchor:hover,
+.anchor:focus,
+.anchor:active {
   color: #0070f3;
   border-color: #0070f3;
 }
