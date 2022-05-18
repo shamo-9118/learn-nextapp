@@ -3,8 +3,8 @@ import Link from "next/link";
 export function Header() {
   return (
     <header>
-      <Link href="/">
-        <a>Index</a>
+      <Link href="/posts">
+        <a>Posts</a>
       </Link>
 
       <Link href="/about">
