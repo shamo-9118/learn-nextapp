@@ -17,7 +17,7 @@ export const Posts = () => {
   }
 
   return (
-    <ol className={styles.main}>
+    <ol >
       {data.map((post) => {
         return (
           <li key={post.id}>
