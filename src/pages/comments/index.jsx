@@ -1,8 +1,5 @@
 import Head from "next/head";
-import useSWR from "swr";
-import { fetcher } from "../../utils/fetcher";
 import { Header } from "../../components/Header";
-import Link from "next/link";
 import { CommentsCompornents } from "../../components/Comments";
 
 const Comments = () => {

@@ -1,14 +1,8 @@
 import Head from "next/head";
 import { Header } from "../../components/Header";
-import Link from "next/link";
-import { useUsers } from "../../hooks/useUsers";
 import { UsersCompornent } from "../../components/Users";
 
-
-
-
 const Users = () => {
-  
   //この上のif分の処理（エラー時の処理）の記述がないとswrは実行できない。mapが使えない。
   return (
     <div>
