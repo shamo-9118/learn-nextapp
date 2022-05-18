@@ -1,28 +1,6 @@
-import useSWR from "swr";
-
-const fetcher = async (url) => {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error("エラーが発生したため、データ取得できませんでした");
-  }
-
-  const json = await response.json();
-  return json;
-};
-
-const usePosts = () => {
-  const { data, error } = useSWR(
-    "https://jsonplaceholder.typicode.com/posts",
-    fetcher
-  );
-  return {
-    data,
-    error,
-    isLoading: !error && !data,
-    isEmpty: data && data.length === 0,
-  };
-};
+import { usePosts } from "../hooks/usePosts";
+import styles from "../styles/Home.module.css"
+import Link from "next/link";
 
 export const Posts = () => {
   const { data, error, isLoading, isEmpty } = usePosts();
@@ -40,9 +18,15 @@ export const Posts = () => {
   }
 
   return (
-    <ol>
+    <ol className={styles.main}>
       {data.map((post) => {
-        return <li key={post.id}>{post.title}</li>;
+        return (
+          <li key={post.id}>
+            <Link href={`/post/${post.id}`}>
+              <a>{post.title}</a>
+            </Link>
+          </li>
+        );
       })}
     </ol>
   );

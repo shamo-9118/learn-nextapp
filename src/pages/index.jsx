@@ -3,32 +3,8 @@ import styles from "../styles/Home.module.css";
 import { Footer } from "../components/Footer";
 import { Posts } from "../components/Posts";
 import { Main } from "../components/Main";
-import { useEffect, useState } from "react";
-import { useCallback } from "react";
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
-  const [loding, setLoding] = useState(true);
-  const [error, setError] = useState(null);
-
-  const getPosts = useCallback(async () => {
-    try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-      if (!res.ok) {
-        throw new Error("取得に失敗しました。");
-      }
-      const json = await res.json();
-      setPosts(json);
-    } catch (error) {
-      setError(error);
-    }
-    setLoding(false);
-  }, []);
-
-  useEffect(() => {
-    getPosts();
-  }, [getPosts]);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -38,7 +14,7 @@ export default function Home() {
       </Head>
 
       <Main title="Index"></Main>
-      <Posts/>
+      <Posts />
       <Footer></Footer>
     </div>
   );
