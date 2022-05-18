@@ -3,7 +3,6 @@ import styles from "../styles/Home.module.css";
 import { Footer } from "../components/Footer";
 import { Main } from "../components/Main";
 
-
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -13,8 +12,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Main title="Index"></Main>
-      <h1>Learn Next.js</h1>
-      <p>JSONPlaceholder</p>
+      <div className={styles.main}>
+        <h1>Learn Next.js</h1>
+        <p>JSONPlaceholder</p>
+      </div>
     </div>
   );
 }
