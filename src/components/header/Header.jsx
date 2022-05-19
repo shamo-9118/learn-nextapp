@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "../../styles/Home.module.css";
 
 const NAV_ITEMS = [
   { href: "/", label: "Index" },
@@ -9,11 +8,11 @@ const NAV_ITEMS = [
 ];
 export function Header() {
   return (
-    <header className={styles.header}>
+    <header className="flex justify-center items-center border-b w-full h-24">
       {NAV_ITEMS.map((item) => {
         return (
           <Link key={item.href} href={item.href}>
-            <a className={styles.anchor}>{item.label}</a>
+            <a className="inline-block py-2 px-6 text-2xl hover:text-blue-400 focus:text-blue-400  active:text-blue-400">{item.label}</a>
           </Link>
         );
       })}
