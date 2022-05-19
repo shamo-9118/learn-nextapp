@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useUsers } from "../../hooks/useFetchArray";
 
-export const UsersCompornent = () => {
-  const { data, error, isLoading, isEmpoty } = useUsers();
+export const UsersComponent = () => {
+  const { data, error, isLoading, isEmpty } = useUsers();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -10,20 +10,23 @@ export const UsersCompornent = () => {
   if (error) {
     return <p>{error.message}</p>;
   }
-  if (isEmpoty) {
+  if (isEmpty) {
     return <p>No users found</p>;
   }
   return (
-    <ol>
+    <ul className="grid grid-cols-2 gap-6 ">
       {data.map((user) => {
         return (
-          <li key={user.id}>
+          <li key={user.id} className=" shadow rounded-lg hover:bg-gray-100">
             <Link href={`/users/${user.id}`}>
-              <a>{`${user.name} (${user.email})`}</a>
+              <a className=" block p-4">
+                <h1 className="text-xl font-bold truncate">{user.name} </h1>
+                <div className=" text-lg truncate">{user.email}</div>
+              </a>
             </Link>
           </li>
         );
       })}
-    </ol>
+    </ul>
   );
 };

@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import { usePost } from "../../hooks/usePost";
-import styles from "../../styles/Home.module.css";
-import { CommentsByPostId } from "../comments/CommetsByPostId";
+import { CommentsByPostId } from "../comments/CommentsByPostId";
 import { UserByUserId } from "../users/UserByUserId";
 
 export const Post = () => {
@@ -15,11 +14,14 @@ export const Post = () => {
     return <div>{error.message}</div>;
   }
   return (
-    <div className={styles.main}>
-      <h1>{data?.title}</h1>
-      <p>{data?.body}</p>
+    <div>
       <UserByUserId id={data.userId} />
-      <CommentsByPostId id={data.id}></CommentsByPostId>
+      <h1 className=" font-bold text-3xl">{data?.title}</h1>
+      <p className=" text-gray-800 text-xl mt-2">{data?.body}</p>
+      <h2 className="text-xl font-bold mt-10">コメント一覧</h2>
+      <div className=" mt-2">
+        <CommentsByPostId id={data.id}></CommentsByPostId>
+      </div>
     </div>
   );
 };

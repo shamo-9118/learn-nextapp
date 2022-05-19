@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "../../../styles/Home.module.css";
 import { Header } from "../../../components/header/Header";
-import { UserComponente } from "../../../components/users/User";
+import { UserComponent} from "../../../components/users/User";
 
 const UsersId = () => {
   return (
@@ -12,7 +12,7 @@ const UsersId = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header></Header>
-      <UserComponente></UserComponente>
+      <UserComponent></UserComponent>
     </div>
   );
 };

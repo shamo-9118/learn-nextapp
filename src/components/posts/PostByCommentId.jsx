@@ -14,9 +14,9 @@ export const PostByComment = (props) => {
     return <div>{error.message}</div>;
   }
   return (
-    <div className={styles.main}>
+    <div className=" text-lg">
       <Link href={`/posts/${data?.id}`}>
-        <a>{data?.title}</a>
+        <a className=" text-lg hover:text-blue-500">{data?.title}</a>
       </Link>
     </div>
   );

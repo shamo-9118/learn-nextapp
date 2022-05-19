@@ -1,7 +1,7 @@
 import { useComment } from "../../hooks/useComment";
-import { PostByComment } from "../posts/PostByCommeteId";
+import { PostByComment } from "../posts/PostByCommentId";
 
-export const CommentComponente = () => {
+export const CommentComponent = () => {
   const { data, error, isLoading } = useComment();
   if (isLoading) {
     return <div>...Loading</div>;
@@ -12,13 +12,15 @@ export const CommentComponente = () => {
   }
   return (
     <div>
-      <h1>{data?.body}</h1>
-      <ul>
-        <li>{data?.email}</li>
-        <li>{data?.name}</li>
-      </ul>
-      <h2>元の記事</h2>
-      <PostByComment id={data.postId}/>
+      <h1 className="text-3xl font-bold">{data?.body}</h1>
+      <div>
+        Created by {data.name} ({data.email})
+      </div>
+
+      <h2 className="font-bold text-xl mt-10">元の記事</h2>
+      <div className="mt-2">
+        <PostByComment id={data.postId} />
+      </div>
     </div>
   );
 };
