@@ -1,4 +1,5 @@
 import { useComment } from "../hooks/useComment";
+import { PostByComment } from "./PostByCommeteId";
 
 export const CommentComponente = () => {
   const { data, error, isLoading } = useComment();
@@ -16,6 +17,8 @@ export const CommentComponente = () => {
         <li>{data?.email}</li>
         <li>{data?.name}</li>
       </ul>
+      <h2>元の記事</h2>
+      <PostByComment id={data.postId}/>
     </div>
   );
 };
