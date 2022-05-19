@@ -1,9 +1,10 @@
 import { usePost } from "../hooks/usePost";
 import styles from "../styles/Home.module.css";
-import Link from "next/link";
+import { CommentsByPostId } from "./CommetsByPostId";
+import { UserByUserId } from "./UserByUserId";
 
 export const Post = () => {
-  const { post, user, error, isLoading } = usePost();
+  const { data, error, isLoading } = usePost();
   if (isLoading) {
     return <div>ローディング中です</div>;
   }
@@ -11,12 +12,12 @@ export const Post = () => {
   if (error) {
     return <div>{error.message}</div>;
   }
-
   return (
     <div className={styles.main}>
-      <h1>{post?.title}</h1>
-      <p>{post?.body}</p>
-      {user?.name ? <div> Ceated by {user.name}</div> : null}
+      <h1>{data?.title}</h1>
+      <p>{data?.body}</p>
+      <UserByUserId id={data.userId} />
+      <CommentsByPostId id={data.id}></CommentsByPostId>
     </div>
   );
 };
