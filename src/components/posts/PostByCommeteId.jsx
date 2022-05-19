@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { usePost } from "../hooks/usePost";
-import styles from "../styles/Home.module.css";
+import { usePost } from "../../hooks/usePost";
+import styles from "../../styles/Home.module.css";
 
 export const PostByComment = (props) => {
   const router = useRouter();

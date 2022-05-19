@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "../../../styles/Home.module.css";
-import { Header } from "../../../components/Header";
-import { UserComponente } from "../../../components/User";
+import { Header } from "../../../components/header/Header";
+import { UserComponente } from "../../../components/users/User";
 
 const UsersId = () => {
   return (

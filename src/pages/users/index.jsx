@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { Header } from "../../components/Header";
-import { UsersCompornent } from "../../components/Users";
+import { Header } from "../../components/header/Header";
+import { UsersCompornent } from "../../components/users/Users";
 
 const Users = () => {
   //この上のif分の処理（エラー時の処理）の記述がないとswrは実行できない。mapが使えない。

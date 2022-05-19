@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "../../../styles/Home.module.css";
-import { Post } from "../../../components/Post";
-import { Main } from "../../../components/Main";
+import { Post } from "../../../components/posts/Post";
+import { Main } from "../../../components/main/Main";
 import { usePost } from "../../../hooks/usePost";
 
 const PostId = () => {

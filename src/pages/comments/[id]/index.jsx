@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "../../../styles/Home.module.css";
-import { Header } from "../../../components/Header";
-import { CommentComponente } from "../../../components/Comment";
+import { Header } from "../../../components/header/Header";
+import { CommentComponente } from "../../../components/comments/Comment";
 
 const CommentsId = () => {
   return (

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {  usePostsByUserId } from "../hooks/useFetchArray";
+import {  usePostsByUserId } from "../../hooks/useFetchArray";
 
 export const PostsByUserId = (props) => {
   const { data, error, isLoading, isEmpty } = usePostsByUserId(props.id);

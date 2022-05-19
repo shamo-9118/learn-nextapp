@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { Footer } from "../components/Footer";
-import { Main } from "../components/Main";
+import { Footer } from "../components/footer/Footer";
+import { Main } from "../components/main/Main";
 
 export default function Home() {
   return (
@@ -16,6 +16,7 @@ export default function Home() {
         <h1>Learn Next.js</h1>
         <p>JSONPlaceholder</p>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

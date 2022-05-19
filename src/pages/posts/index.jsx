@@ -1,8 +1,8 @@
 import Head from "next/head";
 import styles from "../../styles/Home.module.css";
-import { Footer } from "../../components/Footer";
-import { Posts as PostsComponent } from "../../components/Posts";
-import { Main } from "../../components/Main";
+import { Footer } from "../../components/footer/Footer";
+import { Posts as PostsComponent } from "../../components/posts/Posts";
+import { Main } from "../../components/main/Main";
 
 const Posts = () => {
   return (
