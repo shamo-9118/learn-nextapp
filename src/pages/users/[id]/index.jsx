@@ -36,3 +36,6 @@ const UsersId = (props) => {
 export default UsersId;
 
 //SWRConfigをラップする形の書き方でも大丈夫
+//全部やるのではなくてところどころで取り入れる
+//インタラクティブ性があまり良くない。
+//画面だけの遷移はCSR
