@@ -1,7 +1,6 @@
 import classes from "../styles/globals.css";
 import { Layout } from "../components/Layouts/Layout";
 import { SWRConfig } from "swr";
-SWRConfig
 
 export const fetcher = async (url) => {
   const response = await fetch(url);
