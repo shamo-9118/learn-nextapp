@@ -2,6 +2,25 @@ import Head from "next/head";
 import { Header } from "../../components/header/Header";
 import { CommentsComponents } from "../../components/comments/Comments";
 
+
+const sleep =(ms)=> new Promise ((resolve)=>setTimeout (resolve))
+
+export const getStaticProps = async () => {
+  //ユーザーコメントの情報を取得
+  const COMMENTS_API_URL = `https://jsonplaceholder.typicode.com/comments`;
+  const comments = await fetch(COMMENTS_API_URL);
+  const commentsData = await comments.json();
+  await sleep(2000)
+  return {
+    props: {
+      fallback: {
+        [COMMENTS_API_URL]: commentsData,
+        // [POSTS_API_URL]: postsData,
+      },
+    },
+  };
+};
+
 const Comments = () => {
   //この上のif分の処理（エラー時の処理）の記述がないとswrは実行できない。mapが使えない。
   return (
