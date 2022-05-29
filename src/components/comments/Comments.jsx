@@ -18,7 +18,7 @@ export const CommentsComponents = () => {
       {data.map((comment) => {
         return (
           <li key={comment.id} className=" border-b-2 pb-2">
-            <Link href={`/comments/${comment.id}`}>
+            <Link href={`/comments/${comment.id}`} prefetch={false}> 
               <a className=" block text-lg hover:text-blue-400">{`${comment.body} `}</a>
             </Link>
           </li>
@@ -27,3 +27,5 @@ export const CommentsComponents = () => {
     </ul>
   );
 };
+///Linkコンポーネントはデフォルトでprefetchというプロパティを持っていて、これをfalseに設定することによって、ページに表示されたタイミングでサーバーへリクエストをしなくなる。
+//prefetch={false}はLinkコンポーネントにカーソルがホバーされるタイミングでprefetchを行う
