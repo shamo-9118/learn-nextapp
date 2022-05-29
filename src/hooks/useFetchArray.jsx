@@ -3,7 +3,7 @@ import useSWRImmutable from "swr/immutable";
 const useFetchArray = (url) => {
   const { data, error } = useSWRImmutable(url);
   //useSWRからuseSWRImmutableに変えるだけ --- ssrを行なって一回リクエストをしたらそれ以降はリクエストしないという処理。
-
+//全てimmutableにするのではなくリアルタイム性の求められるものはimmutableにしない。必要かどうかは考える。
   return {
     data,
     error,
