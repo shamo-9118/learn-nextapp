@@ -3,14 +3,11 @@ import { SWRConfig } from "swr";
 import { Header } from "../../components/header/Header";
 import { UsersComponent } from "../../components/users/Users";
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve));
-
 export const getServerSideProps = async () => {
   //ユーザーの一覧の情報を取得
   const USERS_API_URL = `https://jsonplaceholder.typicode.com/users`;
   const users = await fetch(USERS_API_URL);
   const usersData = await users.json();
-  await sleep(2000);
   return {
     props: {
       fallback: {
