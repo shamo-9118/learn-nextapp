@@ -19,7 +19,7 @@ export const getServerSideProps = async (ctx) => {
     props: {
       fallback: {
         [USER_API_URL]: userData,
-        // [POSTS_API_URL]: postsData,
+        [POSTS_API_URL]: postsData,
       },
     },
   };
