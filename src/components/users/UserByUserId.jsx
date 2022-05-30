@@ -1,9 +1,10 @@
 import useSWR from "swr";
+import { API_URL } from "../../utils/const";
 import { fetcher } from "../../utils/fetcher";
 
 export const UserByUserId = (props) => {
   const { data, error } = useSWR(
-    props?.id ? `https://jsonplaceholder.typicode.com/users/${props.id}` : null,
+    props?.id ? `${API_URL}/users/${props.id}` : null,
     fetcher
   );
   if (!data && !error) {

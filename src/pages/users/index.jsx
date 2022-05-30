@@ -5,7 +5,7 @@ import { UsersComponent } from "../../components/users/Users";
 
 export const getServerSideProps = async () => {
   //ユーザーの一覧の情報を取得
-  const USERS_API_URL = `https://jsonplaceholder.typicode.com/users`;
+  const USERS_API_URL = `${API_URL}/users`;
   const users = await fetch(USERS_API_URL);
   const usersData = await users.json();
   return {

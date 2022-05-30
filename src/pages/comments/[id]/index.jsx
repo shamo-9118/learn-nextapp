@@ -3,11 +3,11 @@ import styles from "../../../styles/Home.module.css";
 import { Header } from "../../../components/header/Header";
 import { CommentComponent } from "../../../components/comments/Comment";
 import { SWRConfig } from "swr";
-import { useRouter } from "next/router";
+import { API_URL } from "../../../utils/const";
 
 export const getStaticPaths = async () => {
   //↓ここの処理で500件のcommentsを取得してそのcommentsに紐づくidを取り出す
-  const comments = await fetch("https://jsonplaceholder.typicode.com/comments");
+  const comments = await fetch(`${API_URL}/comments`);
 
   const commentsData = await comments.json();
   const paths = commentsData.map((comment) => ({
@@ -29,7 +29,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx) => {
   //ctx = context の略でcontextとカッコ内を記述しても良い、なんならなんでもいいのか？？テスト
   const { id } = ctx.params;
-  const COMMENT_API_URL = `https://jsonplaceholder.typicode.com/comments/${id}`;
+  const COMMENT_API_URL = `${API_URL}/comments/${id}`;
   const comment = await fetch(COMMENT_API_URL);
   if (!comment.ok) {
     return {

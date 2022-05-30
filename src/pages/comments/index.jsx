@@ -2,13 +2,14 @@ import Head from "next/head";
 import { Header } from "../../components/header/Header";
 import { CommentsComponents } from "../../components/comments/Comments";
 import { SWRConfig } from "swr";
+import { API_URL } from "../../utils/const";
 
 // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve));
 
 export const getStaticProps = async () => {
   //ユーザーコメントの情報を取得
   //SG -- getStaticPropsメソッドを使うだけ。しかしSGはビルド時にしか走らせることができない。
-  const COMMENTS_API_URL = `https://jsonplaceholder.typicode.com/comments`;
+  const COMMENTS_API_URL = `${API_URL}/comments`;
   const comments = await fetch(COMMENTS_API_URL);
   const commentsData = await comments.json();
   return {

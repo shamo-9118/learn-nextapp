@@ -1,11 +1,12 @@
 import useSWRImmutable from "swr/immutable";
+import { API_URL } from "../utils/const";
 
 const useFetchArray = (url) => {
   const { data, error } = useSWRImmutable(url);
   //useSWRからuseSWRImmutableに変えるだけ --- ssrを行なって一回リクエストをしたらそれ以降はリクエストしないという処理。
 //全てimmutableにするのではなくリアルタイム性の求められるものはimmutableにしない。必要かどうかは考える。
 //SSR or SG どちらも使える場合はSGが推奨されている。
-//しかし全てのページをSG化するのは難しい。sgのページとそうでないページを見極める。人気度とか
+//しかし全てのページをSG化するのは難しい。sgのページと
   return {
     data,
     error,
@@ -14,7 +15,6 @@ const useFetchArray = (url) => {
   };
 };
 
-const API_URL = "https://jsonplaceholder.typicode.com";
 export const useComments = () => {
   return useFetchArray(`${API_URL}/comments`);
 };
