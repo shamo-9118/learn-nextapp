@@ -26,6 +26,7 @@ export const getStaticPaths = async () => {
   };
 };
 
+//getStaticPropsはページ遷移してきた時にしか走らせることができない。なのでページ更新では表示されず、ページ遷移では更新され表示される。
 export const getStaticProps = async (ctx) => {
   //ctx = context の略でcontextとカッコ内を記述しても良い、なんならなんでもいいのか？？テスト
   const { id } = ctx.params;
@@ -34,6 +35,7 @@ export const getStaticProps = async (ctx) => {
   if (!comment.ok) {
     return {
       notFound: true,
+      revalidate: 1,
     };
   }
   const commentData = await comment.json();
@@ -43,6 +45,7 @@ export const getStaticProps = async (ctx) => {
         [COMMENT_API_URL]: commentData,
       },
     },
+    revalidate: 1, //単位は秒　ミリ秒ではない
   };
 };
 

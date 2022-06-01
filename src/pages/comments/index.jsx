@@ -19,6 +19,7 @@ export const getStaticProps = async () => {
         // [POSTS_API_URL]: postsData,
       },
     },
+    revalidate: 1,
   };
 };
 
