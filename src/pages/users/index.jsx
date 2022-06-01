@@ -2,6 +2,7 @@ import Head from "next/head";
 import { SWRConfig } from "swr";
 import { Header } from "../../components/header/Header";
 import { UsersComponent } from "../../components/users/Users";
+import { API_URL } from "../../utils/const";
 
 export const getServerSideProps = async () => {
   //ユーザーの一覧の情報を取得

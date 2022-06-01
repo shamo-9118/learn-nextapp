@@ -3,6 +3,7 @@ import styles from "../../../styles/Home.module.css";
 import { Header } from "../../../components/header/Header";
 import { UserComponent } from "../../../components/users/User";
 import { SWRConfig } from "swr";
+import { API_URL } from "../../../utils/const";
 
 export const getServerSideProps = async (ctx) => {
   const { id } = ctx.query;
